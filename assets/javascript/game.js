@@ -34,22 +34,23 @@
 
     //start button instances a new game
      start : function(){
-        this.goalScore = 0
-        //target is between 19 and 120
+        this.yourGuess = 0;
+        //.goalScore is between 19 and 120
          this.goalScore = this.findRandom(19, 120);
          this.targetOutput.html("<h1>goal score: " + this.goalScore + "</h1>"); 
+         this.guessOutput.html("<h1>goal score: " + this.yourGuess + "</h1>"); 
         //guesses are set between 1 and 12 
          this.guess1 = this.findRandom(1, 12);
-         this,guess2 = this.findRandom(1, 12);
+        this.guess2 = this.findRandom(1, 12);
          this.guess3 = this.findRandom(1, 12);
          this.guess4 = this.findRandom(1, 12);
     },
 
     //onclicks connect to this 
-        addCrystal1 : function(){
+    addCrystal1 : function(){
         this.yourGuess += this.guess1;
         this.guessOutput.html("<h5>your guess: " + this.yourGuess + "</h5>");
-        if(this.yourGuess ===this.target){
+        if(this.yourGuess ===this.goalScore){
             this.wins ++;
             this.winsAndLosses.html(
                 "<h3> wins: </h3>" +
@@ -57,13 +58,21 @@
                 "<h3> losses: </h3>" +
                 this.losses
             );
+        } else if(this.yourGuess >= this.goalScore){
+            this.losses++;
+            this.winsAndLosses.html(
+                "<h3> wins: </h3>" +
+                this.wins +
+                "<h3> losses: </h3>" +
+                this.losses)
+                this.start();
         }
     },
     addCrystal2 : function(){
-        this.testDiv(this.crystal2, "test");
         this.yourGuess += this.guess2;
+        this.test(this.yourGuess);
         this.guessOutput.html("<h5>your guess: " + this.yourGuess + "</h5>");
-        if(this.yourGuess ===this.target){
+        if(this.yourGuess ===this.goalScore){
             this.wins ++;
             this.winsAndLosses.html(
                 "<h3> wins: </h3>" +
@@ -71,36 +80,46 @@
                 "<h3> losses: </h3>" +
                 this.losses
             );
-        };
-    },
-    addCrystal3 : function(){
-        this.testDiv(this.crystal3, "test");
-        this.yourGuess += this.guess3;
-        this.guessOutput.html("<h5>your guess: " + this.yourGuess + "</h5>");
-        if(this.yourGuess ===this.target){
-            this.wins ++;
-            this.winsAndLosses.html(
-                "<h3> wins: </h3>" +
-                this.wins +
-                "<h3> losses: </h3>" +
-                this.losses
-            );
+            this.start();
         }
-            else if(this.yourGuess >= this.target){
+            else if(this.yourGuess >= this.goalScore){
                 this.losses++;
                 this.winsAndLosses.html(
                     "<h3> wins: </h3>" +
                     this.wins +
                     "<h3> losses: </h3>" +
                     this.losses)
+            this.start();
+            }
+        },
+    addCrystal3 : function(){
+        this.yourGuess += this.guess3;
+        this.guessOutput.html("<h5>your guess: " + this.yourGuess + "</h5>");
+        if(this.yourGuess ===this.goalScore){
+            this.wins ++;
+            this.winsAndLosses.html(
+                "<h3> wins: </h3>" +
+                this.wins +
+                "<h3> losses: </h3>" +
+                this.losses
+            );
+            this.start();
+        }
+            else if(this.yourGuess >= this.goalScore){
+                this.losses++;
+                this.winsAndLosses.html(
+                    "<h3> wins: </h3>" +
+                    this.wins +
+                    "<h3> losses: </h3>" +
+                    this.losses)
+            this.start();
             }
         },
 
     addCrystal4 : function(){
-        this.testDiv(this.crystal4, "test");
         this.yourGuess += this.guess4;
         this.guessOutput.html("<h5>your guess: " + this.yourGuess + "</h5>");
-        if(this.yourGuess ===this.target){
+        if(this.yourGuess ===this.goalScore){
             this.wins ++;
             this.winsAndLosses.html(
                 "<h3> wins: </h3>" +
@@ -108,14 +127,16 @@
                 "<h3> losses: </h3>" +
                 this.losses
             )
+            this.start();
         }
-            else if(this.yourGuess >= this.target){
+            else if(this.yourGuess >= this.goalScore){
                 this.losses++;
                 this.winsAndLosses.html(
                     "<h3> wins: </h3>" +
                     this.wins +
                     "<h3> losses: </h3>" +
                     this.losses)
+            this.start();
             }
         }
     };
