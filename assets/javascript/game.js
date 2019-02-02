@@ -86,15 +86,16 @@
                 this.losses
             );
         }
-        if(this.yourGuess >= this.target){
-            this.losses++;
-            this.winsAndLosses.html(
-                "<h3> wins: </h3>" +
-                this.wins +
-                "<h3> losses: </h3>" +
-                this.losses
-        }
-    },
+            else if(this.yourGuess >= this.target){
+                this.losses++;
+                this.winsAndLosses.html(
+                    "<h3> wins: </h3>" +
+                    this.wins +
+                    "<h3> losses: </h3>" +
+                    this.losses)
+            }
+        },
+
     addCrystal4 : function(){
         this.testDiv(this.crystal4, "test");
         this.yourGuess += this.guess4;
@@ -107,17 +108,17 @@
                 "<h3> losses: </h3>" +
                 this.losses
             )
+        }
             else if(this.yourGuess >= this.target){
                 this.losses++;
                 this.winsAndLosses.html(
                     "<h3> wins: </h3>" +
                     this.wins +
                     "<h3> losses: </h3>" +
-                    this.losses
+                    this.losses)
             }
         }
-    },
- };
+    };
 
 gameInstance.crystal1.on("click", function() {
     gameInstance.addCrystal1(); 
